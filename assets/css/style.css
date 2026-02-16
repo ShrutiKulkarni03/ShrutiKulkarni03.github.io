@@ -239,6 +239,10 @@ article.active {
   font-weight: var(--fw-500);
 }
 
+.h6 {
+    color: var(--orange-yellow-crayola);
+}
+
 .article-title {
   position: relative;
   padding-bottom: 7px;
