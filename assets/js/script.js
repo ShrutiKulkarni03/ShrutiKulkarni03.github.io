@@ -71,7 +71,56 @@ const portfolioModalFunc = function () {
 for (let i = 0; i < portfolioModalOpenBtns.length; i++) {
   portfolioModalOpenBtns[i].addEventListener("click", function (event) {
     event.preventDefault();
-    portfolioModalFunc();
+
+    try {
+      // Select modal elements
+      const modalImg = document.querySelector("[data-portfolio-modal-img]");
+      const modalTitle = document.querySelector("[data-portfolio-modal-title]");
+      const modalText = document.querySelector("[data-portfolio-modal-text]");
+
+      // Get data from clicked item
+      const imgInfo = this.querySelector("img");
+      const titleEl = this.querySelector(".project-title");
+
+      // Try to find the text element inside 'this' (the A tag)
+      // If not found, look in the parent LI (in case the browser moved it out of the A tag)
+      let textEl = this.querySelector("[data-item-text]");
+      if (!textEl && this.parentElement) {
+        textEl = this.parentElement.querySelector("[data-item-text]");
+      }
+
+      console.log("Clicked Element:", this);
+      console.log("Title Element:", titleEl);
+      console.log("Text Element:", textEl);
+
+      const title = titleEl ? titleEl.innerText : "Untitled Project";
+      const text = textEl ? textEl.innerHTML : "<p>No description available.</p>";
+      const projectLink = this.dataset.projectLink;
+      const customImgSrc = this.dataset.modalImgSrc;
+      const customImgAlt = this.dataset.modalImgAlt;
+
+      // Set modal content
+      if (modalImg && imgInfo) {
+        modalImg.src = customImgSrc || imgInfo.src;
+        modalImg.alt = customImgAlt || imgInfo.alt;
+      }
+
+      if (modalText) {
+        modalText.innerHTML = text;
+      }
+
+      if (modalTitle) {
+        if (projectLink) {
+          modalTitle.innerHTML = `<a href="${projectLink}" target="_blank">${title}</a>`;
+        } else {
+          modalTitle.innerText = title;
+        }
+      }
+
+      portfolioModalFunc();
+    } catch (error) {
+      console.error("Error opening portfolio modal:", error);
+    }
   });
 }
 
