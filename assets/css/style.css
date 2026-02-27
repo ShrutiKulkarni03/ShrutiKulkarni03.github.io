@@ -1935,18 +1935,13 @@ textarea.form-input::-webkit-resizer {
     padding-bottom: 20px;
   }
 
-  .filter-select-box {
-    display: none;
-  }
+ .filter-select-box {
+  display: block;
+}
 
-  .filter-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
+.filter-list {
+  display: none;
+}
 
   .filter-item button {
     color: var(--light-gray);
@@ -2253,6 +2248,21 @@ textarea.form-input::-webkit-resizer {
   .social-list {
     justify-content: center;
   }
+
+  /* FILTER SWITCH AT DESKTOP LAYOUT */
+
+.filter-select-box {
+  display: none;
+}
+
+.filter-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding-left: 5px;
+  margin-bottom: 30px;
+}
 
 
 
